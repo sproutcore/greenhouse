@@ -14,12 +14,12 @@ Greenhouse.Target = SC.Record.extend(
 /** @scope Greenhouse.Target.prototype */ {
 
   primaryKey: "name",
-  
+
   /**
     Name of target.  This is also the primary key.
   */
   name: SC.Record.attr(String),
-  
+
   /**
     Parent of target.  Only non-null for nested targets.
   */
@@ -29,19 +29,19 @@ Greenhouse.Target = SC.Record.extend(
     URL to use to load tests.
   */
   testsUrl: SC.Record.attr(String, { key: "link_tests" }),
-  
-  /**  
-    URL to use to load the app.  If no an app, returns null
+
+  /**
+    URL to use to load the app.  If not an app, returns null
   */
   appUrl: function() {
     return (this.get('kind') === 'app') ? this.get('name')+"?designMode=YES" : null;
   }.property('kind', 'name').cacheable(),
-  
+
   /**
     The isExpanded state.  Defaults to NO on load.
   */
   isExpanded: SC.Record.attr(Boolean, { defaultValue: NO }),
-  
+
   /**
     Display name for this target
   */
@@ -49,7 +49,7 @@ Greenhouse.Target = SC.Record.extend(
     var name = (this.get('name') || '(unknown)').split('/');
     return name[name.length-1];
   }.property('name').cacheable(),
-  
+
   /**
     The icon to display.  Based on the type.
   */
@@ -59,14 +59,14 @@ Greenhouse.Target = SC.Record.extend(
       case "framework":
         ret = 'sc-icon-folder-16';
         break;
-        
+
       case "app":
-        ret = 'sc-icon-options-16';
+        ret = this.get('sortKind') === 'sproutcore' ? 'sc-icon-options-16' : 'sc-icon-sproutcore-16';
         break;
     }
     return ret ;
   }.property('kind').cacheable(),
-  
+
   /**
     This is the group key used to display.  Will be the kind unless the item
     belongs to the sproutcore target.
