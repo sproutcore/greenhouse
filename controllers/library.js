@@ -4,18 +4,18 @@
 // ==========================================================================
 /*globals Greenhouse */
 
+
 /** @class
   Based on SCUI.SearchableTreeController
-  http://github.com/etgryphon/sproutcore-ui/blob/master/frameworks/foundation/controllers/searchable_tree.js  
+  http://github.com/etgryphon/sproutcore-ui/blob/master/frameworks/foundation/controllers/searchable_tree.js
   Thanks to Evin Grano and Brandon Blatnick!
-  
+
   @extends SC.ArrayController
 */
-
 Greenhouse.libraryController = SC.TreeController.create( SC.CollectionViewDelegate,
 /** @scope Greenhouse.libraryController.prototype */ {
   /**
-    Call this method whenever you want to reload the library from hte server
+    Call this method whenever you want to reload the library from the server
   */
   reload: function() {
     var configQuery = Greenhouse.CONFIG_QUERY, target = Greenhouse.targetController.get('content');
@@ -24,24 +24,24 @@ Greenhouse.libraryController = SC.TreeController.create( SC.CollectionViewDelega
     root.set('contents', files);
     this.set('content', root);
   },
-  
+
   views: SC.outlet('content.treeItemChildren.0.treeItemChildren'),
   // ..........................................................
   // Collection View delegate drag methods
-  //    
-  collectionViewShouldBeginDrag: function(view) { 
-    return YES; 
+  //
+  collectionViewShouldBeginDrag: function(view) {
+    return YES;
   },
 
   /**
-    Called by the collection view just before it starts a drag so that 
+    Called by the collection view just before it starts a drag so that
     you can provide the data types you would like to support in the data.
 
     You can implement this method to return an array of the data types you
     will provide for the drag data.
 
     If you return null or an empty array, can you have set canReorderContent
-    to YES on the CollectionView, then the drag will go ahead but only 
+    to YES on the CollectionView, then the drag will go ahead but only
     reordering will be allowed.  If canReorderContent is NO, then the drag
     will not be allowed to start.
 
@@ -65,7 +65,7 @@ Greenhouse.libraryController = SC.TreeController.create( SC.CollectionViewDelega
 
     The default implementation returns null.
 
-    @param view {SC.CollectionView} 
+    @param view {SC.CollectionView}
       the collection view that initiated the drag
 
     @param dataType {String} the data type to provide
@@ -76,9 +76,9 @@ Greenhouse.libraryController = SC.TreeController.create( SC.CollectionViewDelega
     var ret = (dataType === 'SC.Object') ? this.get('selection').firstObject() : null;
     return ret ;
   },
-  
+
   ghostActsLikeCursor: YES,
-  
+
   /**
     Renders a drag view for the passed content indexes. If you return null
     from this, then a default drag view will be generated for you.
@@ -95,7 +95,7 @@ Greenhouse.libraryController = SC.TreeController.create( SC.CollectionViewDelega
 
   /**
     Allows the ghost view created in collectionViewDragViewFor to be displayed
-    like a cursor instead of the default implementation. This sets the view 
+    like a cursor instead of the default implementation. This sets the view
     origin to be the location of the mouse cursor.
 
     @property {Boolean} ghost view acts like a cursor
@@ -105,7 +105,7 @@ Greenhouse.libraryController = SC.TreeController.create( SC.CollectionViewDelega
 
   // ..........................................................
   // type ahead search code
-  // 
+  //
   search: null,
   searchResults: [],
   searchKey: 'name',
@@ -135,7 +135,7 @@ Greenhouse.libraryController = SC.TreeController.create( SC.CollectionViewDelega
    var searchResults = [];
    var search = this.get('search');
    var c = this.get('content');
-   if(search === null || search === '' || search === undefined){ 
+   if(search === null || search === '' || search === undefined){
      this.set('searchResults', c);
    }
    else {
@@ -155,13 +155,13 @@ Greenhouse.libraryController = SC.TreeController.create( SC.CollectionViewDelega
    }
  },
 
- /** 
+ /**
    @private
    Returns a flat list of matches for the foldered tree item.
  */
  _runSearchOnItem: function(treeItem, search, searchRegex, searchKey) {
    var searchMatches = [], iconKey = this.get('iconKey'),
-       searchedList, key, searchLen, 
+       searchedList, key, searchLen,
        children, nameKey = this._nameKey, that;
 
    if (SC.none(treeItem)) return searchMatches;
@@ -169,7 +169,7 @@ Greenhouse.libraryController = SC.TreeController.create( SC.CollectionViewDelega
    children = treeItem.get('treeItemChildren');
    if (!children) children = treeItem.get('children');
    that = this;
-   children.forEach( function(child){      
+   children.forEach( function(child){
      if (child.treeItemChildren) {
        var searchedList = that._runSearchOnItem(child, search, searchRegex, searchKey);
        searchedList.forEach( function(m){ searchMatches.push(m); });
@@ -184,11 +184,11 @@ Greenhouse.libraryController = SC.TreeController.create( SC.CollectionViewDelega
          match.treeItem    = child;
          match.icon        = child.get(this._iconKey);
          searchMatches.push(match);
-       } 
+       }
      }
    });
 
    return searchMatches;
  }
-  
+
 }) ;
