@@ -1,4 +1,18 @@
-greenhouse
-==========
+Greenhouse (PageDesigner)
+==============================================================================
 
-SproutCore's View Designer (work-in-progress)
+to run:
+cd into/your/sc_project
+sc-server
+
+visit:
+http://localhost:4020/sproutcore/greenhouse
+
+
+Credits:
+
+Museo Sans 500 & Italic weights - http://www.josbuivenga.demon.nl/museosans.html
+
+
+
+
