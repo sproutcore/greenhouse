@@ -5,12 +5,8 @@
 /*globals Greenhouse module test ok equals same stop start */
 sc_require('views/plist_item');
 var pane = SC.ControlTestPane.design({ height: 32 })
-  .add("basic", SC.PlistItemView.design({ 
+  .add("basic", SC.PlistItemView.design({
   }));
-
-pane.show();
-
-window.pane = pane ;
 
 module("Greenhouse.PlistItem",pane.standardSetup());
 
