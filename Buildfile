@@ -1,6 +1,6 @@
 # ==========================================================================
-# Project:   Showcase
-# Copyright: ©2012 7x7 Software, Inc.
+# Project:   Greenhouse
+# Copyright: ©2010 Mike Ball
 # License:   Licensed under MIT license
 # ==========================================================================
 # This is your Buildfile for your app, Showcase. This tells SproutCore
