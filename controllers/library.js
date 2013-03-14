@@ -98,7 +98,7 @@ Greenhouse.libraryController = SC.TreeController.create( SC.CollectionViewDelega
     like a cursor instead of the default implementation. This sets the view
     origin to be the location of the mouse cursor.
 
-    @property {Boolean} ghost view acts like a cursor
+    @type Boolean ghost view acts like a cursor
   */
   ghostActsLikeCursor: YES,
 
