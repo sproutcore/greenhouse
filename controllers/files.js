@@ -4,7 +4,7 @@
 // ==========================================================================
 /*globals Greenhouse */
 
-/** @class
+/**
 
 
   @extends TreeController
@@ -14,7 +14,7 @@ Greenhouse.filesController = SC.TreeController.create(SC.CollectionViewDelegate,
 
   // ..........................................................
   // Drag and drop support
-  // 
+  //
   collectionViewValidateDragOperation: function(view, drag, op, proposedInsertionIndex, proposedDropOperation) {
     return SC.DRAG_ANY;
   },
@@ -26,7 +26,7 @@ Greenhouse.filesController = SC.TreeController.create(SC.CollectionViewDelegate,
 
 
   treeItemChildrenKey: "contents",
-  
+
   /**
     Call this method whenever you want to reload the files from the server.
   */

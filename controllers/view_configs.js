@@ -4,9 +4,9 @@
 // ==========================================================================
 /*globals Greenhouse */
 
-/** @class
-  
-  
+/**
+
+
   @extends SC.ArrayController
 */
 
@@ -22,9 +22,9 @@ Greenhouse.viewConfigsController = SC.ArrayController.create(
     var files = Greenhouse.store.find(configQuery);
     this.set('content', files);
   },
-  
+
   _content_status_changed: function(){
-    var c = this.get('content'), that = this;    
+    var c = this.get('content'), that = this;
     if(c && c.get && c.get('status') && c.get('status') === SC.Record.READY_CLEAN){
       Greenhouse.libraryController.set('content', SC.Object.create({
         treeItemIsExpanded: YES,
@@ -48,29 +48,29 @@ Greenhouse.viewConfigsController = SC.ArrayController.create(
       }));
     }
   }.observes('*content.status'),
-  
+
   refreshContent: function(){
-   this._content_status_changed(); 
+   this._content_status_changed();
   },
-  
-  /** 
+
+  /**
     Generates the arrays of views, panes and controllers that can be dropped into this app
   */
   views: function() {
     return this._collect_all_the_elements('views');
   }.property('[]').cacheable(),
-  
+
   panes: function() {
     return this._collect_all_the_elements('panes');
-    
+
   }.property('[]').cacheable(),
-  
+
   controllers: function() {
     return this._collect_all_the_elements('controllers');
-    
+
   }.property('[]').cacheable(),
-  
-  
+
+
   _collect_all_the_elements: function(key){
     var c = this.get('content'), ret = [], subItem;
     if(c && c.get('length') > 0){

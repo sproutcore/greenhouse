@@ -4,7 +4,7 @@
 // ==========================================================================
 /*globals Greenhouse */
 
-/** @class
+/**
 
   This class is here to receive custom editor events
   @extends SC.View
@@ -15,5 +15,5 @@ Greenhouse.ApplicationListItem = SC.ListItemView.extend(
     if(this.get('contentIndex') === 0) context.addClass('first')
     sc_super();
   }
-  
+
 });

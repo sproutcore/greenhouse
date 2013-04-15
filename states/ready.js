@@ -3,7 +3,7 @@
 // Copyright: ©2010 Mike Ball
 // ==========================================================================
 /*globals Greenhouse js_beautify*/
-/** @mixin
+/**
   @extends Greenhouse
   @author Mike Ball
   @author Evin Grano
@@ -13,11 +13,11 @@
 Greenhouse.mixin( /** @scope Greenhouse */{
   // ..........................................................
   // Ready States
-  // 
+  //
   readyStates: SC.State.design({
     initialSubstate: 'readyWaiting',
-    
-    
+
+
     enterState: function(){
       console.log('greenhouse has landed');
       var c = Greenhouse.getPath('mainPage.mainPane.container');
@@ -29,7 +29,7 @@ Greenhouse.mixin( /** @scope Greenhouse */{
 
     // ..........................................................
     //  Events
-    // 
+    //
     run: function(){
       var target = Greenhouse.targetController.get('name');
       window.open(target, "","");
@@ -44,7 +44,7 @@ Greenhouse.mixin( /** @scope Greenhouse */{
     },
 
     unselectFile: function(){
-     // TODO: [EG, MB] add the action for unselecting 
+     // TODO: [EG, MB] add the action for unselecting
      this.gotoState('readyWaiting');
     },
 
@@ -75,16 +75,16 @@ Greenhouse.mixin( /** @scope Greenhouse */{
       }
       // ..........................................................
       // Wait for the view to re-draw and update the webViewFrame
-      // 
+      //
       SC.run(function(){
         var dropViewFrame,
           webView = Greenhouse.appPage.get('webView'),
           pv = webView.get('parentView'),
           webViewFrame = webView.get('frame');
           console.log(webViewFrame);
-          
+
           webViewFrame = pv.convertFrameToView(webViewFrame, null);
-          
+
           console.log(webViewFrame);
           //add the drop container to the adjusted layout
           pv = view.get('parentView');
@@ -94,7 +94,7 @@ Greenhouse.mixin( /** @scope Greenhouse */{
             webViewFrame.y += dropViewFrame.y;
           }
           console.log(Greenhouse._webViewFrame);
-          //update 
+          //update
           Greenhouse._webViewFrame = webViewFrame;
           console.log(Greenhouse._webViewFrame);
       });
@@ -102,7 +102,7 @@ Greenhouse.mixin( /** @scope Greenhouse */{
     },
     // ..........................................................
     // Ready substates
-    // 
+    //
     readyWaiting: SC.State.design({
     }),
 
@@ -148,7 +148,7 @@ Greenhouse.mixin( /** @scope Greenhouse */{
 
       // ..........................................................
       // Events
-      // 
+      //
       save: function(){
         var designPage, content = Greenhouse.fileController.get('content');
         designPage = Greenhouse.iframe.SC.designsController.get('page');
@@ -157,7 +157,7 @@ Greenhouse.mixin( /** @scope Greenhouse */{
         if(!designPage.get('pageName')) designPage.set('pageName', content.get('pageName'));
         designPage = designPage.emitDesign();
         content.set('body', js_beautify(designPage));
-        content.commitRecord(); 
+        content.commitRecord();
       },
       addProperty: function(){
         var designer = Greenhouse.designController.get('content');
@@ -184,7 +184,7 @@ Greenhouse.mixin( /** @scope Greenhouse */{
       },
       // ..........................................................
       // pageSelected substates
-      // 
+      //
        noDock: SC.State.design({
          parentState: 'pageSelected',
 
@@ -231,5 +231,5 @@ Greenhouse.mixin( /** @scope Greenhouse */{
          }
       })
     })
-  })  
+  })
 });

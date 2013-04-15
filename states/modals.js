@@ -5,7 +5,7 @@
 /*globals Greenhouse */
 /*jslint evil: true */
 
-/** @mixin
+/**
   @extends Greenhouse
   @author Mike Ball
   @author Evin Grano
@@ -13,10 +13,10 @@
   @since RC1
 */
 Greenhouse.mixin( /** @scope Greenhouse */{
-  
+
   modalStates: SC.State.design({
     initialSubstate: 'modalReady',
-    
+
     modalReady: SC.State.design({
 
       parallelStatechart: 'modals',
@@ -96,7 +96,7 @@ Greenhouse.mixin( /** @scope Greenhouse */{
         var fromKey = Greenhouse.get("newBindingFromKey"),
             toKey = Greenhouse.get("newBindingToKey"),
             newItem = this.get('newItem'),
-            view = Greenhouse.designController.get('view'), 
+            view = Greenhouse.designController.get('view'),
             c = Greenhouse.designController.get('content');
 
         if(view && c){
@@ -144,8 +144,8 @@ Greenhouse.mixin( /** @scope Greenhouse */{
         var viewConfig = Greenhouse.get('newDesignViewConfig');
         var array = viewConfig.get(Greenhouse.get('newDesignType'));
 
-        var newView = array.pushObject({name: Greenhouse.get('newDesignClass'), 
-                           scClass: Greenhouse.get('newDesignClass'), 
+        var newView = array.pushObject({name: Greenhouse.get('newDesignClass'),
+                           scClass: Greenhouse.get('newDesignClass'),
                            defaults: eval("("+Greenhouse.get('newDesignDefaults')+")")});
 
         viewConfig.commitRecord();
@@ -219,7 +219,7 @@ Greenhouse.mixin( /** @scope Greenhouse */{
         picker.popup(list.itemViewForContentObject(content));
         picker.becomeFirstResponder();
 
-        //TODO: copy correct here? 
+        //TODO: copy correct here?
         Greenhouse.propertyEditorController.set('content', SC.copy(content));
       },
       exitState: function(){
@@ -233,7 +233,7 @@ Greenhouse.mixin( /** @scope Greenhouse */{
       },
 
       update: function(){
-        var val = Greenhouse.propertyEditorController.get('value'), 
+        var val = Greenhouse.propertyEditorController.get('value'),
             view = Greenhouse.propertyEditorController.get('view'),
             key = Greenhouse.propertyEditorController.get('key'),
             origKey = Greenhouse.propertyController.get('key'),
@@ -293,7 +293,7 @@ Greenhouse.mixin( /** @scope Greenhouse */{
         this.gotoState('modalReady');
       }
     })
-    
+
   })
-  
+
 });

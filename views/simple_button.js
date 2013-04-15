@@ -4,16 +4,16 @@
 /*globals Greenhouse*/
 /*jslint evil: true */
 
-/** @class
-  
+/**
+
   This view come from SCUI.SimpleButton
-  
+
   Mixin to allow for simple button actions...
-  
-  
-  This Mixin comes from SCUI: http://github.com/etgryphon/sproutcore-ui and is 
+
+
+  This Mixin comes from SCUI: http://github.com/etgryphon/sproutcore-ui and is
   avaliable under the MIT license
-  
+
   @author Evin Grano
   @version 0.1
   @since 0.1
@@ -29,14 +29,14 @@ Greenhouse.SimpleButton = {
   stateClass: 'state',
   hoverClass: 'hover',
   activeClass: 'active', // Used to show the button as being active (pressed)
-  
-  _isMouseDown: NO, 
-  
+
+  _isMouseDown: NO,
+
   displayProperties: ['inState'],
 
-  /** @private 
+  /** @private
     On mouse down, set active only if enabled.
-  */    
+  */
   mouseDown: function(evt) {
     //console.log('SimpleButton#mouseDown()...');
     if (!this.get('isEnabledInPane')) return YES ; // handled event, but do nothing
@@ -48,11 +48,11 @@ Greenhouse.SimpleButton = {
 
   /** @private
     Remove the active class on mouseExited if mouse is down.
-  */  
+  */
   mouseExited: function(evt) {
     //console.log('SimpleButton#mouseExited()...');
-    if ( this.get('hasHover') ){ 
-      this._hover = NO; 
+    if ( this.get('hasHover') ){
+      this._hover = NO;
       this.displayDidChange();
     }
     //if (this._isMouseDown) this.set('isActive', NO);
@@ -61,11 +61,11 @@ Greenhouse.SimpleButton = {
 
   /** @private
     If mouse was down and we renter the button area, set the active state again.
-  */  
+  */
   mouseEntered: function(evt) {
     //console.log('SimpleButton#mouseEntered()...');
-    if ( this.get('hasHover') ){ 
-      this._hover = YES; 
+    if ( this.get('hasHover') ){
+      this._hover = YES;
       this.displayDidChange();
     }
     //this.set('isActive', this._isMouseDown);
@@ -74,7 +74,7 @@ Greenhouse.SimpleButton = {
 
   /** @private
     ON mouse up, trigger the action only if we are enabled and the mouse was released inside of the view.
-  */  
+  */
   mouseUp: function(evt) {
     if (!this.get('isEnabledInPane')) return YES;
     //console.log('SimpleButton#mouseUp()...');
@@ -82,10 +82,10 @@ Greenhouse.SimpleButton = {
     this._isMouseDown = false;
     // Trigger the action
     var target = this.get('target') || null;
-    var action = this.get('action');    
+    var action = this.get('action');
     // Support inline functions
     if (this._hasLegacyActionHandler()) {
-      // old school... 
+      // old school...
       this._triggerLegacyActionHandler(evt);
     } else {
       // newer action method + optional target syntax...
@@ -97,21 +97,21 @@ Greenhouse.SimpleButton = {
     this.displayDidChange();
     return YES;
   },
-  
+
   renderMixin: function(context, firstTime) {
-    if (this.get('hasHover')) { 
+    if (this.get('hasHover')) {
       var hoverClass = this.get('hoverClass');
       context.setClass(hoverClass, this._hover && !this._isMouseDown); // addClass if YES, removeClass if NO
     }
-    
+
     if (this.get('hasState')) {
       var stateClass = this.get('stateClass');
       context.setClass(stateClass, this.inState); // addClass if YES, removeClass if NO
     }
-    
+
     var activeClass = this.get('activeClass');
     context.setClass(activeClass, this._isMouseDown);
-    
+
     // If there is a toolTip set, grab it and localize if necessary.
     var toolTip = this.get('toolTip') ;
     if (SC.typeOf(toolTip) === SC.T_STRING) {
@@ -119,11 +119,11 @@ Greenhouse.SimpleButton = {
       context.attr('title', toolTip);
       context.attr('alt', toolTip);
     }
-  },  
-  
+  },
+
   /**
     @private
-    From ButtonView 
+    From ButtonView
     Support inline function definitions
    */
   _hasLegacyActionHandler: function(){
@@ -146,12 +146,12 @@ Greenhouse.SimpleButton = {
     else if (target !== undefined && SC.typeOf(action) === SC.T_FUNCTION) {
       action.apply(target, [evt]);
     }
-    
+
     if (SC.typeOf(action) === SC.T_STRING) {
       eval("this.action = function(e) { return "+ action +"(this, e); };");
       this.action(evt);
     }
   }
-  
+
 };
 

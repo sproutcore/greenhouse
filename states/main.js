@@ -3,7 +3,7 @@
 // Copyright: ©2010 Mike Ball
 // ==========================================================================
 /*globals Greenhouse */
-/** @mixin
+/**
   @extends Greenhouse
   @author Mike Ball
   @author Evin Grano

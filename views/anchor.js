@@ -4,7 +4,7 @@
 // ==========================================================================
 /*globals Greenhouse */
 
-/** @class
+/**
 
   (Document Your View Here)
 
@@ -13,28 +13,28 @@
 Greenhouse.AnchorView = SC.View.extend(
 /** @scope Greenhouse.AnchorView.prototype */ {
 
-  /** 
+  /**
     The anchor location to display
   */
   anchorLocation: null,
-  
+
   /**
     Enabled/disable
   */
   isEnabled: YES,
-  
+
   /**
     Set to YES while the mouse is pressed.
   */
   isActive: NO,
-  
+
   /**
     Proposed anchor location.  Changes as mouse moves/drags
   */
   proposedAnchorLocation: null,
-  
+
   displayProperties: "anchorLocation isEnabled isActive proposedAnchorLocation".w(),
-  
+
   render: function(context, firstTime) {
     if (firstTime) {
       var f = this.get('frame');
@@ -43,17 +43,17 @@ Greenhouse.AnchorView = SC.View.extend(
         .end();
     }
   },
-  
+
   didCreateLayer: function() {
     this.didUpdateLayer();
   },
-  
+
   didUpdateLayer: function() {
     var elem   = this.$('canvas'),
         ctx    = elem[0].getContext("2d"),
         width  = this.$().width(),
         height = this.$().height(),
-        loc    = this.get('anchorLocation'), 
+        loc    = this.get('anchorLocation'),
         ploc, color, x, y, tmp;
 
     // adjust size as needed...
@@ -64,7 +64,7 @@ Greenhouse.AnchorView = SC.View.extend(
     // do  the drawr-ing!
     if (!this.get('isEnabled')) loc = null;
     color = loc ? 'black' : 'rgb(128,128,128)';
-    
+
     ctx.save();
     ctx.lineWidth = 1;
     ctx.fillStyle = 'rgb(255,255,255)';
@@ -84,43 +84,43 @@ Greenhouse.AnchorView = SC.View.extend(
     ctx.restore();
 
     loc = this.get('anchorLocation');
-    
+
     ploc = this.get('proposedAnchorLocation');
     if (ploc && ploc !== loc) {
       color = this.get('isActive') ? 'rgb(80,80,80)' : 'rgb(200,200,200)';
       this._drawAnchorAt(ploc, ctx, color, width, height);
     }
-    
+
     this._drawAnchorAt(loc, ctx, 'red', width, height);
   },
 
   // ..........................................................
   // MOUSE EVENTS
-  // 
-  
+  //
+
   mouseMoved: function(evt) {
     this._updateProposedAnchorLocation(evt);
   },
-  
+
   mouseExited: function(evt) {
     this.setIfChanged('proposedAnchorLocation', null);
   },
-  
+
   mouseDown: function(evt) {
     if (this.get('isEnabled') && this.get('anchorLocation')) {
       this.get('mouseDown');
-      
+
       this.set('isActive', YES);
       this._updateProposedAnchorLocation(evt);
     }
     return YES ;
   },
-  
+
   mouseDragged: function(evt) {
     if (this.get('isActive')) this._updateProposedAnchorLocation(evt);
     return YES ;
   },
-  
+
   mouseUp: function(evt) {
     var loc;
 
@@ -130,27 +130,27 @@ Greenhouse.AnchorView = SC.View.extend(
       if (loc) this.setIfChanged('anchorLocation', loc);
       this.set('isActive', NO);
     }
-    
+
     return YES ;
   },
 
-  
+
   // ..........................................................
   // PRIVATE
-  // 
+  //
 
   _updateProposedAnchorLocation: function(evt) {
     var loc = this.get('anchorLocation'),
         pnt = this.convertFrameFromView({ x: evt.pageX, y: evt.pageY },null),
         K   = SC.ViewDesigner,
-        rad, f, w, h, ret, centerAnchor, centerResize;            
-    
+        rad, f, w, h, ret, centerAnchor, centerResize;
+
     if (!this.get('isEnabled') || !loc) ret = null;
     else {
       rad = 10;
       f = SC.copy(this.get('frame'));
 
-      // calc outside rect    
+      // calc outside rect
       f.x = f.y = 20;
       f.width -= 40 ;
       f.height -= 40;
@@ -170,13 +170,13 @@ Greenhouse.AnchorView = SC.View.extend(
         rad /= 2;
         if (Math.abs(pnt.x - SC.minX(f))<=rad) {
           ret = K.ANCHOR_LEFT | K.ANCHOR_HEIGHT;
-        
+
         } else if (Math.abs(pnt.x - SC.midX(f)) <= rad) {
           ret = K.ANCHOR_CENTERX | K.ANCHOR_HEIGHT;
-        
+
         } else if (Math.abs(pnt.x - SC.maxX(f)) <= rad) {
           ret = K.ANCHOR_RIGHT | K.ANCHOR_HEIGHT;
-          
+
         } else if (Math.abs(pnt.y - SC.minY(f)) <= rad) {
           ret = K.ANCHOR_WIDTH | K.ANCHOR_TOP;
 
@@ -186,11 +186,11 @@ Greenhouse.AnchorView = SC.View.extend(
         } else if (Math.abs(pnt.y - SC.maxY(f)) <= rad) {
           ret = K.ANCHOR_WIDTH | K.ANCHOR_BOTTOM;
         }
-        
+
       } else ret = w|h;
       if (ret === 0) ret = null;
     }
-  
+
     // alternate between center anchor/resize if options...
     centerAnchor = K.ANCHOR_CENTERX | K.ANCHOR_CENTERY;
     centerResize = K.ANCHOR_WIDTH | K.ANCHOR_HEIGHT;
@@ -198,11 +198,11 @@ Greenhouse.AnchorView = SC.View.extend(
       if (ret===centerAnchor) ret = centerResize;
       else if (ret===centerResize) ret = centerAnchor;
     }
-  
+
     this.setIfChanged('proposedAnchorLocation', ret);
   },
-  
-    
+
+
   _drawAnchorAt: function(loc, ctx, color, width, height) {
     var x = this._xForAnchorLocation(loc, 20, width-40),
         y = this._yForAnchorLocation(loc, 20, height-40),
@@ -224,8 +224,8 @@ Greenhouse.AnchorView = SC.View.extend(
         ctx.arc(Math.floor(width-20), tmp, 3, Math.PI, Math.PI*2, true);
         ctx.arc(Math.floor(width-20), tmp, 3, 0, Math.PI, true);
         ctx.stroke();
-      } 
-      
+      }
+
       if (y<0) {
         tmp = Math.floor(Math.abs(x));
         ctx.lineWidth = 2;
@@ -237,28 +237,28 @@ Greenhouse.AnchorView = SC.View.extend(
         ctx.arc(tmp, Math.floor(height-20), 3, Math.PI*1.5, Math.PI*2, true);
         ctx.arc(tmp, Math.floor(height-20), 3, 0, Math.PI*1.5, true);
         ctx.stroke();
-      } 
-      
+      }
+
       if (x>0 && y>0) {
         ctx.beginPath();
         ctx.lineWidth = 2;
         ctx.arc(x,y,10,0,Math.PI*2, true);
         ctx.stroke();
-      } 
+      }
 
       ctx.restore();
     }
   },
-  
+
   _xForAnchorLocation: function(loc, left, w) {
     var K = SC.ViewDesigner, ret ;
-        
+
     if (loc & K.ANCHOR_LEFT) ret = left;
     else if (loc & K.ANCHOR_RIGHT) ret = left+w;
     else if (loc & K.ANCHOR_CENTERX) ret = left+Math.floor(w/2);
     else if (loc & K.ANCHOR_WIDTH) ret = 0-(left+Math.floor(w/2)) ;
     else ret = 0;
-    
+
     return ret ;
   },
 
@@ -270,7 +270,7 @@ Greenhouse.AnchorView = SC.View.extend(
     else if (loc & K.ANCHOR_CENTERY) ret = top+Math.floor(h/2);
     else if (loc & K.ANCHOR_HEIGHT) ret = 0-(top+Math.floor(h/2)) ;
     else ret = 0;
-    
+
     return ret ;
   }
 

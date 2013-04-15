@@ -5,7 +5,7 @@
 /*globals Greenhouse */
 /*jslint evil: true */
 
-/** @mixin
+/**
   @extends Greenhouse
   @author Mike Ball
   @author Evin Grano
@@ -13,10 +13,10 @@
   @since RC1
 */
 Greenhouse.mixin( /** @scope Greenhouse */{
-  
+
   inspectorStates: SC.State.design({
     initialSubstate: 'inspectorClosed',
-    
+
     inspectorClosed: SC.State.design({
 
       parallelStatechart: 'inspector',
@@ -52,7 +52,7 @@ Greenhouse.mixin( /** @scope Greenhouse */{
         picker.becomeFirstResponder();
       },
       exitState: function(){
-        var ap = Greenhouse.appPage; 
+        var ap = Greenhouse.appPage;
         var picker = ap.get('inspectorPicker'),
             pickerContentView = ap.get('inspectorPickerContentView');
         pickerContentView.setIfChanged('nowShowing', null);
@@ -80,7 +80,7 @@ Greenhouse.mixin( /** @scope Greenhouse */{
       parallelStatechart: 'inspector',
 
       enterState: function(){
-        var ap = Greenhouse.appPage; 
+        var ap = Greenhouse.appPage;
         var picker = ap.get('inspectorPicker'),
             pickerContentView = ap.get('inspectorPickerContentView');
 
@@ -92,11 +92,11 @@ Greenhouse.mixin( /** @scope Greenhouse */{
         var content = ap.getPath('inspectorContentView.content'),
             toolbar = ap.getPath('inspectorContentView.toolbar');
 
-        content.adjust('top', 28);    
-        toolbar.set('isVisible', YES); 
+        content.adjust('top', 28);
+        toolbar.set('isVisible', YES);
       },
       exitState: function(){
-        var ap = Greenhouse.appPage; 
+        var ap = Greenhouse.appPage;
         var picker = ap.get('inspectorPicker'),
             pickerContentView = ap.get('inspectorPickerContentView');
 
@@ -108,7 +108,7 @@ Greenhouse.mixin( /** @scope Greenhouse */{
         var content = ap.getPath('inspectorContentView.content'),
             toolbar = ap.getPath('inspectorContentView.toolbar');
 
-        content.adjust('top', 0);    
+        content.adjust('top', 0);
         toolbar.set('isVisible', NO);
       },
 
@@ -146,7 +146,7 @@ Greenhouse.mixin( /** @scope Greenhouse */{
       }
     })
   })
-  
-  
+
+
 
 });

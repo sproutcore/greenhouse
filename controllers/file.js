@@ -4,7 +4,7 @@
 // ==========================================================================
 /*globals Greenhouse */
 
-/** @class
+/**
 
   (Document Your Controller Here)
 
@@ -16,7 +16,7 @@ Greenhouse.fileController = SC.ObjectController.create(
 
   contentBinding: 'Greenhouse.filesController.selection',
   contentBindingDefault: SC.Binding.single(),
-  
+
 
   _content_statusDidChange: function(){
     var c = this.get('content');
@@ -31,5 +31,5 @@ Greenhouse.fileController = SC.ObjectController.create(
         Greenhouse.sendAction('fileSelectedIsNotAPage');
       });
     }
-  }.observes('*content.body')  
+  }.observes('*content.body')
 }) ;

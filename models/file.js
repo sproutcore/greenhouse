@@ -6,7 +6,7 @@
 /*globals Greenhouse*/
 
 sc_require('core');
-/** @class
+/**
 
   file properties
   @property dir

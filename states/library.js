@@ -5,7 +5,7 @@
 /*globals Greenhouse */
 /*jslint evil: true */
 
-/** @mixin
+/**
   @extends Greenhouse
   @author Mike Ball
   @author Evin Grano
@@ -13,10 +13,10 @@
   @since RC1
 */
 Greenhouse.mixin( /** @scope Greenhouse */{
-  
+
   libraryStates: SC.State.design({
     initialSubstate: 'libraryClosed',
-    
+
     libraryClosed: SC.State.design({
       parallelStatechart: 'library',
 
@@ -82,8 +82,8 @@ Greenhouse.mixin( /** @scope Greenhouse */{
         var content = ap.getPath('libraryContentView.content'),
             toolbar = ap.getPath('libraryContentView.toolbar');
 
-        content.adjust('top', 49);    
-        toolbar.set('isVisible', YES); 
+        content.adjust('top', 49);
+        toolbar.set('isVisible', YES);
       },
       exitState: function(){
         var ap = Greenhouse.appPage;
@@ -98,7 +98,7 @@ Greenhouse.mixin( /** @scope Greenhouse */{
         var content = ap.getPath('libraryContentView.content'),
             toolbar = ap.getPath('libraryContentView.toolbar');
 
-        content.adjust('top', 49);    
+        content.adjust('top', 49);
         toolbar.set('isVisible', NO);
       },
 
@@ -134,9 +134,9 @@ Greenhouse.mixin( /** @scope Greenhouse */{
         this.gotoState('libraryClosed');
       }
     })
-    
-    
+
+
   })
-  
-  
+
+
 });

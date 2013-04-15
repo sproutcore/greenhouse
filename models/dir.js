@@ -6,13 +6,13 @@
 /*globals Greenhouse*/
 
 sc_require('core');
-/** @class
+/**
 
   dir properties
   @property dir
   @property name
   @property contents
-  
+
   @extends SC.Record
   @version 0.1
 */
@@ -20,24 +20,24 @@ Greenhouse.Dir = SC.Record.extend(
 /** @scope Greenhouse.Dir.prototype */ {
   type: 'Dir',
   nestedRecordNamespace: Greenhouse,
-  
+
   name: SC.Record.attr(String),
-  dir: SC.Record.attr(String),  
+  dir: SC.Record.attr(String),
   contents: SC.Record.toMany('Greenhouse.File', {nested: YES}),
-  
+
   primaryKey: 'id',
-  
-  
+
+
   isFile: NO,
 
   path: function(){
     return this.get('dir') + this.get('name');
   }.property('name', 'dir').cacheable(),
 
-  
+
   evalBody: function(){
     var bodyText = this.get('body'), body, designs = [];
-    
+
    try{
       body = eval(bodyText || "");
       body.set('needsDesigner', YES);
@@ -61,11 +61,11 @@ Greenhouse.Dir = SC.Record.extend(
       }
       this.writeAttribute('designs', designs, YES);
       this.notifyPropertyChange('designs');
-      
+
     } catch (exception) {
       console.log("Couldn't eval body...");
     }
-    
+
   },
   /*
     if this is a dir then return if the passed
@@ -78,7 +78,7 @@ Greenhouse.Dir = SC.Record.extend(
       ret = contents.find(function(item){
         if(item.get('type') === file.get('type') && item.get('name') === file.get('name') && item !== file) return YES;
       });
-      
+
       return ret ? YES : NO;
     }
     else{

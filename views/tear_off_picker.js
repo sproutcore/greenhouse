@@ -3,7 +3,7 @@
 // Copyright: ©2010 Mike Ball
 // ==========================================================================
 /*globals Greenhouse */
-/** @class
+/**
 
   @extends SC.PickerPane
 */

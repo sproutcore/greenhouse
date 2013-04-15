@@ -4,7 +4,7 @@
 // ==========================================================================
 /*globals Greenhouse */
 
-/** @class
+/**
 
   (Document Your Controller Here)
 

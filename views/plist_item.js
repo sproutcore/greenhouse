@@ -3,25 +3,25 @@
 // Copyright: ©2010 Mike Ball
 // ==========================================================================
 /*globals Greenhouse */
-/** @class
+/**
 
   This class is here to receive custom editor events
   @extends SC.View
 */
 Greenhouse.PlistItemView = SC.View.extend(SC.Control,
 /** @scope Greenhouse.ListItem.prototype */ {
- 
+
   classNames: ['sc-list-item-view'],
- 
- 
+
+
   contentValueKey: 'key',
- 
+
   _valueStyle: {position: 'absolute', right: 5, top: '50%', height: 18, marginTop: -9, left: 'auto'},
- 
+
   render: function(context, firstTime){
     var content = this.get('content'),
        key, propertyKey, value, displayValue;
-    
+
     if(firstTime){
       // handle label -- always invoke
       key = this.get('contentValueKey');
@@ -43,14 +43,14 @@ Greenhouse.PlistItemView = SC.View.extend(SC.Control,
        else{
          value = value.toString();
          context.begin('span').addStyle(this._valueStyle).text(value).end();
-         
+
        }
       }
       else{
         console.log(value);
         context.begin('span').addStyle(this._valueStyle).text("unknown").end();
       }
-      
+
     }
     else{
       if(this._checkboxRenderSource){
@@ -59,21 +59,21 @@ Greenhouse.PlistItemView = SC.View.extend(SC.Control,
       }
     }
   },
-  
+
   mouseDown: function(evt){
     if (this._isInsideElementWithClassName('sc-checkbox-view',evt)) {
       this._addCheckboxActiveState() ;
       this._isMouseDownOnCheckbox = YES ;
       this._isMouseInsideCheckbox = YES ;
-      return true ; 
+      return true ;
     }
     return false;
   },
-  
+
   mouseUp: function(evt) {
     var ret= false,  content, state, idx, set;
 
-    // if mouse was down in checkbox -- then handle mouse up, otherwise 
+    // if mouse was down in checkbox -- then handle mouse up, otherwise
     // allow parent view to handle event.
     if (this._isMouseDownOnCheckbox) {
 
@@ -85,20 +85,20 @@ Greenhouse.PlistItemView = SC.View.extend(SC.Control,
           value = (value === SC.MIXED_STATE) ? YES : !value ;
           content.view.set(content.get('key'), value); // update view
           this._checkboxRenderSource.set('isSelected', value);
-          
+
           this.displayDidChange(); // repaint view...
         }
         ret = true;
       }
       this._removeCheckboxActiveState() ;
-      
+
     }
     this._isMouseDownOnCheckbox = this._isMouseInsideCheckbox = false;
     return ret;
   },
   // ..........................................................
   // adapted from list item view
-  // 
+  //
   renderCheckbox: function(context, state) {
     var renderer = this.get('theme').checkboxRenderDelegate;
 
@@ -113,7 +113,7 @@ Greenhouse.PlistItemView = SC.View.extend(SC.Control,
 
     var source = this._checkboxRenderSource;
     if (!source) {
-      source = this._checkboxRenderSource = 
+      source = this._checkboxRenderSource =
       SC.Object.create({ renderState: {}, theme: this.get('theme')});
     }
 
@@ -128,14 +128,14 @@ Greenhouse.PlistItemView = SC.View.extend(SC.Control,
 
     this._checkboxRenderDelegate = renderer;
   },
-  /** 
+  /**
     Determines if the event occurred inside an element with the specified
     classname or not.
   */
   _isInsideElementWithClassName: function(className, evt) {
     var layer = this.get('layer');
     if (!layer) return NO ; // no layer yet -- nothing to do
-    
+
     var el = SC.$(evt.target) ;
     var ret = NO, classNames ;
     while(!ret && el.length>0 && (el[0] !== layer)) {
@@ -147,14 +147,14 @@ Greenhouse.PlistItemView = SC.View.extend(SC.Control,
   },
   // ..........................................................
   // checkbox helpers...
-  // 
+  //
   _addCheckboxActiveState: function() {
     if (this.get('isEnabled')) {
       if (this._checkboxRenderDelegate) {
         var source = this._checkboxRenderSource;
 
         source.set('isActive', YES);
-        
+
         this._checkboxRenderDelegate.update(source, this.$('.sc-checkbox-view'));
       } else {
         // for backwards-compatibility.
@@ -162,13 +162,13 @@ Greenhouse.PlistItemView = SC.View.extend(SC.Control,
       }
     }
   },
-  
+
   _removeCheckboxActiveState: function() {
     if (this._checkboxRenderSource) {
       var source = this._checkboxRenderSource;
 
       source.set('isActive', NO);
-      
+
       this._checkboxRenderDelegate.update(source, this.$('.sc-checkbox-view'));
     } else {
       // for backwards-compatibility.

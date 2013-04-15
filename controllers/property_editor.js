@@ -4,10 +4,10 @@
 // ==========================================================================
 /*globals Greenhouse */
 
-/** @class
+/**
 
   buffers changes on property editor
-  
+
   @extends SC.ObjectController
 */
 

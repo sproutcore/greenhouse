@@ -7,7 +7,7 @@
 //better default state name...
 SC.DEFAULT_TREE = 'main';
 
-/** @namespace
+/**
 
   My cool new app.  Describe your application.
 

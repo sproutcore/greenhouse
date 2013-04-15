@@ -5,7 +5,7 @@
 /*globals Greenhouse */
 
 
-/** @class
+/**
   Based on SCUI.SearchableTreeController
   http://github.com/etgryphon/sproutcore-ui/blob/master/frameworks/foundation/controllers/searchable_tree.js
   Thanks to Evin Grano and Brandon Blatnick!

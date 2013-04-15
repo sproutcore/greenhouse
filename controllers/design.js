@@ -4,7 +4,7 @@
 // ==========================================================================
 /*globals Greenhouse */
 
-/** @class
+/**
 
   (Document Your Controller Here)
 
@@ -14,7 +14,7 @@ Greenhouse.designController = SC.ObjectController.create(
 /** @scope Greenhouse.designController.prototype */ {
   contentBinding: 'Greenhouse.pageController*designController.selection',
   contentBindingDefault: SC.Binding.single().oneWay(),
-  
+
   propertySelection: null
-  
+
 }) ;

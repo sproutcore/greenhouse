@@ -4,7 +4,7 @@
 // ==========================================================================
 /*globals Greenhouse */
 
-/** @class
+/**
 
   The full set of targets available in the application.  This is populated
   automatically when you call loadTargets().

@@ -4,7 +4,7 @@
 // ==========================================================================
 /*globals Greenhouse */
 
-/** @class
+/**
 
   (Document your Model here)
 
@@ -14,13 +14,13 @@
 Greenhouse.Design = SC.Record.extend(
 /** @scope Greenhouse.Design.prototype */ {
   primaryKey: 'scClass',
-  
+
   name: SC.Record.attr(String),
   scClass: SC.Record.attr(String),
   defaults: SC.Record.attr(Object),
-  
+
   canEdit: function(){
     return this.getPath('parentRecord.canEdit');
   }.property('parentRecord').cacheable()
-  
+
 }) ;
