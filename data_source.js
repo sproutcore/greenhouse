@@ -49,7 +49,7 @@ Greenhouse.DataSource = SC.DataSource.extend({
         return item.type === 'File' ? Greenhouse.File : Greenhouse.Dir;
       });
       storeKeys = store.loadRecords(recordTypes, response);
-      store.loadQueryResults(query, storeKeys);
+      store.dataSourceDidFetchQuery(query, storeKeys);
       Greenhouse.sendAction('fileListCallDidComplete');
     }
   },
@@ -82,7 +82,7 @@ Greenhouse.DataSource = SC.DataSource.extend({
       console.error("TODO: Add handler when fetching targets fails");
     } else {
       storeKeys = store.loadRecords(Greenhouse.Target, response);
-      store.loadQueryResults(query, storeKeys);
+      store.dataSourceDidFetchQuery(query, storeKeys);
       Greenhouse.sendAction('fetchTargetsDidComplete');
     }
   },
@@ -108,7 +108,7 @@ Greenhouse.DataSource = SC.DataSource.extend({
       console.error("TODO: Add handler when fetching view configs fails");
     } else {
       storeKeys = store.loadRecords(Greenhouse.ViewConfig, response);
-      store.loadQueryResults(query, storeKeys);
+      store.dataSourceDidFetchQuery(query, storeKeys);
     }
   },
 
