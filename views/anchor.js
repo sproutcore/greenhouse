@@ -39,7 +39,7 @@ Greenhouse.AnchorView = SC.View.extend(
     if (firstTime) {
       var f = this.get('frame');
       context.begin('canvas')
-        .attr('width', f.width).attr('height', f.height)
+        .setAttr({ width: f.width, height: f.height })
         .end();
     }
   },
