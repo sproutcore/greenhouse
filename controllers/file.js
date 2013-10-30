@@ -6,7 +6,7 @@
 
 /**
 
-  (Document Your Controller Here)
+  The selected file. Its designable contents are available for editing.
 
   @extends SC.ObjectController
 */

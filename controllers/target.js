@@ -6,7 +6,7 @@
 
 /**
 
-  (Document Your Controller Here)
+  The selected application or framework.
 
   @extends SC.ObjectController
 */

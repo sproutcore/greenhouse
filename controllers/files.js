@@ -6,6 +6,8 @@
 
 /**
 
+  The (tree) list of files available in the selected app. Used by the
+  projectPicker pane's fileList.
 
   @extends TreeController
 */

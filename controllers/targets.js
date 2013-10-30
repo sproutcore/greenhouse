@@ -6,12 +6,11 @@
 
 /**
 
-  The full set of targets available in the application.  This is populated
-  automatically when you call loadTargets().
+  The full set of applications or frameworks which the application has
+  found. Used in the app's initial "Choose an application" list.
 
-
-  This Class comes from SproutCore's test runner
-
+  This is populated automatically when you call loadTargets(). Adapted
+  from SproutCore's test runner.
 
   @extends SC.ArrayController
 */
